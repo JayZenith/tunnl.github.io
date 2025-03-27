@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="refresh" content="5">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>The tunnl Language</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <div id="body">
+        <div id="left">
+            <div id="top">
+                <img src="tunnl.jpeg" id="logoimg">
+                <h1 id="bigtitle">tunnl</h1>
+            </div>
+            <h2 id="motto">An automation tool for the modern age.</h2>
+            <ul id="nav">
+                <li><a href="https://docs.aurora-lang.org" class="navlink">Docs</a></li>
+                <li><a href="https://github.com/aurora-pl" class="navlink">Github</a></li>
+                <li><a href="https://talk.aurora-lang.org" class="navlink">Community</a></li>
+                <li><a href="/get" class="navlink">Get</a></li>
+            </ul>
+        </div>
+        <div id="right" style="margin-left: 5%">
+            <h1>The tunnl language.</h1>
+            <p>Aurora is a scripting language that is imperative, dynamically typed, and compiled. It's inspired by
+                <a href="https://wikipedia.org/wiki/Rexx">Rexx</a>,
+                <a href="https://wikipedia.org/wiki/Lua_(programming_language)">Lua</a>,
+                and <a href="https://wikipedia.org/wiki/Perl">Perl</a>.
+            </p>
+            <h1>An introduction.</h1>
+            <p>tunnl is <i>imperative</i>, which means your program is described as a list of actions for the computer to carry out.
+            Tunnl is also <i>dynamically typed</i>, which means that variables are not bound to a certain type&mdash; but can hold
+            any value.</p>
+<pre><code><hl-kw>fn</hl-kw> say_hi_to name
+    <hl-cm># an action</hl-cm>
+    <hl-act>print</hl-act> <hl-str>"Hi, "</hl-str>, name, <hl-str>"!"</hl-str>
+<hl-kw>end</hl-kw>
+<hl-act>say_hi_to</hl-act> <hl-str>"World"</hl-str>
+<hl-cm># Hi, World!</hl-cm></code></pre>
+            <p>It's meant for automation (think shell scripting), text processing, and general scripting applications.
+               The language is simple enough to become fluent in within an hour, but powerful enough to replace your
+               dusty Perl and Bash scripts. Filesystem operations, report generation, command execution&mdash; all what tunnl's designed for.</p>
+<pre><code><hl-kw>fn</hl-kw> backup_file name
+    new = name + <hl-str>“.bak”</hl-str>
+    <hl-act>copy</hl-act> name, new
+<hl-kw>end</hl-kw>
+<hl-kw>for</hl-kw> file, dir()
+    <hl-act>backup_file</hl-act> file
+    <hl-act>print</hl-act> <hl-str>“Backed up “</hl-str>, file
+<hl-kw>end</hl-kw></code></pre>
+<!--
+            <h1>Values</h1>
+            <p>tunnl keeps simple by removing the concept of null. All variables <strong>must</strong> have a value.
+            In tunnl, there are functions (marked 'fn') which must return a value, and subroutines (marked 'sub') which cannot
+            return a value. Functions can be called in any context, but subroutines can only be called outside of expressions.
+            This distinction allows tunnl to exclude the concept of null.
+            Functions and subroutines are first-class values in tunnl, and are also closures.</p>
+<pre><code><hl-kw>fn</hl-kw> fib n
+    <hl-kw>if</hl-kw> n < <hl-num>0</hl-num>
+        <hl-kw>return</hl-kw> n
+    <hl-kw>else</hl-kw>
+        <hl-kw>return</hl-kw> fib(n - <hl-num>1</hl-num>) + fib(n - <hl-num>2</hl-num>)
+    <hl-kw>end</hl-kw>
+<hl-kw>end</hl-kw>
+
+<hl-kw>sub</hl-kw> print_fib_of n
+    <hl-act>print</hl-act> <hl-str>“fib(“</hl-str>, n, <hl-str>“) : “</hl-str>, fib(n)
+<hl-kw>end</hl-kw>
+
+<hl-kw>for</hl-kw> i, to(<hl-num>20</hl-num>)
+    <hl-act>print_fib_of</hl-act> n
+<hl-kw>end</hl-kw>
+</code></pre>
+            <h1>Data structures</h1>
+            <p>tunnl has two primitive data structures: arrays and maps. Arrays are dynamic, and grow/shrink as needed.
+            Map keys can be any value, and so can the values in the map.</p>
+<pre><code>my_map = {
+    <hl-str>"foo"</hl-str>: <hl-num>13</hl-num>,
+    <hl-str>"bar"</hl-str>: <hl-str>"baz"</hl-str>,
+    <hl-num>96.7</hl-num>: <hl-str>"fahrenheit"</hl-str>
+}
+<hl-act>print</hl-act> my_map:<hl-str>"bar"</hl-str> <hl-cm># baz</hl-cm>
+my_list = { <hl-num>1</hl-num>, <hl-str>"foo"</hl-str>, { <hl-num>3</hl-num>, <hl-num>4</hl-num> }, <hl-kw>false</hl-kw> }
+my_list:<hl-num>0</hl-num> = <hl-num>3</hl-num>
+<hl-act>print</hl-act> my_list:<hl-num>0</hl-num> <hl-cm># 3</hl-cm>
+</code></pre>
+            <h1>Control Flow</h1>
+            <p>tunnl has the basic control flow you'd expect: if-else, while loops, and for loops. It also has select (a case construct), until (inverse while), unless (inverse if), and switch (switch-case).</p>
+<pre><code><hl-kw>fn</hl-kw> fizzbuzz i -> <hl-kw>select</hl-kw>
+    <hl-kw>case</hl-kw> i % <hl-num>15</hl-num> == <hl-num>0</hl-num>
+        <hl-act>print</hl-act> <hl-str>“FizzBuzz “</hl-str>, i
+    <hl-kw>end</hl-kw>
+    <hl-kw>case</hl-kw> i % <hl-num>3</hl-num> == <hl-num>0</hl-num>
+        <hl-act>print</hl-act> <hl-str>“Fizz “</hl-str>, i
+    <hl-kw>end</hl-kw>
+    <hl-kw>case</hl-kw> i % <hl-num>5</hl-num> == <hl-num>0</hl-num>
+        <hl-act>print</hl-act> <hl-str>“Buzz “</hl-str>, i
+    <hl-kw>end</hl-kw>
+    <hl-kw>else</hl-kw>
+        <hl-act>print</hl-act> i
+    <hl-kw>end</hl-kw>
+<hl-kw>end</hl-kw>
+
+input = <hl-kw>false</hl-kw>
+<hl-kw>until</hl-kw> input
+    input = num(ask(<hl-str>“Input a number: “</hl-str>))
+<hl-kw>end</hl-kw>
+
+<hl-kw>for</hl-kw> i, to(input)
+    <hl-act>fizzbuzz</hl-act> i
+<hl-kw>end</hl-kw>
+ -->
+</code></pre>
+            <h1>That's it!</h1>
+            <p>You're now equipped to start writing programs in tunnl. Go forth and write your own programs!</p>
+        </div>
+    </div>
+</body>
+</html>

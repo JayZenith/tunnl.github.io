@@ -1,0 +1,126 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Space+Mono&display=swap');
+
+body {
+    color: white;
+    background: rgb(30,38,80);
+    background: linear-gradient(45deg, rgb(14, 51, 16) 0%, rgb(22, 121, 9) 100%);
+    background-attachment: fixed;
+    padding: 5%;
+}
+pre {
+    background: rgba(0, 0, 0, 25%);
+    border-radius: 10px;
+    padding: 2%;
+    width: fit-content;
+}
+code {
+    font-family: 'Space Mono', monospace;
+    font-variant-ligatures: none;
+}
+h1 {
+    font-family: Inter, sans-serif;
+    font-weight: 700;
+}
+h2 {
+    font-family: Inter, sans-serif;
+    font-weight: 400;
+}
+#top {
+    display: flex;
+}
+#bigtitle {
+    transform: translateY(20%);
+}
+#logoimg {
+    width: auto;
+    height:4em;
+    margin-right: 0.25em;
+}
+#motto {
+    margin: 0;
+    font-size: medium;
+    color: #c2c2c2;
+}
+#nav {
+    list-style-type: none; /* Remove bullets */
+    padding: 0; /* Remove padding */
+    margin-left: 0;
+    margin-right: 0;
+    font-family: Inter, sans-serif;
+    font-weight: 200;
+    font-size: x-large;
+}
+.navlink {
+    text-decoration: none;
+    color: white;
+}
+.navlink:hover {
+    color: #bd94ff;
+    text-decoration: underline;
+    transition: color 200ms;
+}
+
+#body {
+    display: flex;
+    justify-content: center;
+}
+
+#right {
+    max-width: 50vw;
+}
+
+@media only screen and (max-width: 800px) {
+    #body {
+        flex-direction: column;
+    }
+    #top, #motto, #nav {
+        padding-left: 5%;
+    }
+    #top {
+        padding-top: 5%;
+    }
+    #right {
+        max-width: none;
+    }
+    #left {
+        position: initial;
+    }
+}
+
+p {
+    font-family: Inter, sans-serif;
+    font-weight: 200;
+    line-height: 200%;
+}
+
+a {
+    color: white;
+}
+
+a:hover {
+    color: #bd94ff;
+    text-decoration: underline wavy;
+    transition: color 200ms;
+}
+
+hl-kw {
+    color: #bd94ff;
+}
+
+hl-cm {
+    font-style: italic;
+    color: slateblue;
+}
+
+hl-str {
+    color: mediumseagreen;
+}
+
+hl-act {
+    color: lightpink;
+}
+
+hl-num {
+    color: deepskyblue;
+}
