@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <!-- <meta http-equiv="refresh" content="5"> -->
+    <meta http-equiv="refresh" content="5">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>The tunnl Language</title>
     <link rel="stylesheet" href="index.css">
@@ -33,23 +33,32 @@
             <p>tunnl is <i>imperative</i>, which means your program is described as a list of actions for the computer to carry out.
             Tunnl is also <i>dynamically typed</i>, which means that variables are not bound to a certain type&mdash; but can hold
             any value.</p>
-<pre><code><hl-kw>fn</hl-kw> say_hi_to name
+<pre><code><hl-kw>fn</hl-kw> sayHi(first, last) <hl-kw>start</hl-kw>
     <hl-cm># an action</hl-cm>
-    <hl-act>print</hl-act> <hl-str>"Hi, "</hl-str>, name, <hl-str>"!"</hl-str>
+    <hl-act>print</hl-act> <hl-str>"Hi, "</hl-str>+ name + <hl-str>" "</hl-str> + last + <hl-str>"!"</hl-str>
 <hl-kw>end</hl-kw>
-<hl-act>say_hi_to</hl-act> <hl-str>"World"</hl-str>
-<hl-cm># Hi, World!</hl-cm></code></pre>
-            <p>It's meant for automation (think shell scripting), text processing, and general scripting applications.
+
+<hl-kw>fn</hl-kw> main() <hl-kw>start</hl-kw>
+    <hl-cm># declare dynamic variables with keyword quant</hl-cm>
+    <hl-act>quant </hl-act>name =  <hl-str>"tunnl"</hl-str>
+    <hl-act>quant </hl-act>surname = <hl-str>"user"</hl-str>
+
+    sayHi(name, surname)
+<hl-kw>end</hl-kw>
+
+main();
+<hl-cm># "Hi, tunnel user!"</hl-cm></code></pre>
+            <!-- <p>It will be meant for automation (think shell scripting), text processing, and general scripting applications.
                The language is simple enough to become fluent in within an hour, but powerful enough to replace your
                dusty Perl and Bash scripts. Filesystem operations, report generation, command execution&mdash; all what tunnl's designed for.</p>
-<pre><code><hl-kw>fn</hl-kw> backup_file name
+<pre><code><hl-kw>fn</hl-kw> backup_file(name) <hl-kw>start</hl-kw>
     new = name + <hl-str>“.bak”</hl-str>
     <hl-act>copy</hl-act> name, new
 <hl-kw>end</hl-kw>
-<hl-kw>for</hl-kw> file, dir()
+<hl-kw>for</hl-kw> file, dir() <hl-kw>start</hl-kw>
     <hl-act>backup_file</hl-act> file
     <hl-act>print</hl-act> <hl-str>“Backed up “</hl-str>, file
-<hl-kw>end</hl-kw></code></pre>
+<hl-kw>end</hl-kw></code></pre> -->
 <!--
             <h1>Values</h1>
             <p>tunnl keeps simple by removing the concept of null. All variables <strong>must</strong> have a value.
